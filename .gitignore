@@ -1,0 +1,32 @@
+# installers
+*.tgz
+
+# compiled output
+/dist
+/node_modules
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# Docker volumes
+.db/
+
+# Environment variables
+.env
+
+# Sentry Config File
+.env.sentry-build-plugin
