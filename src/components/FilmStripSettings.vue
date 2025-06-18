@@ -1,10 +1,11 @@
 <template>
-  <form class="flex flex-col gap-2 overflow-y-auto">
+  <form class="flex flex-col gap-2">
     <fieldset class="p-4 shadow card fieldset bg-base-200">
       <legend class="fieldset-legend">Bildauswahl</legend>
 
       <label class="label">Bilder</label>
-      <input type="file" class="file-input" multiple accept="image/*" @change="images = [...$event.target.files]" />
+      <input type="file" class="file-input" multiple accept="image/*"
+        @change="images = [...($event.target as HTMLInputElement).files!]" />
     </fieldset>
 
     <fieldset class="p-4 shadow card fieldset bg-base-200">
@@ -33,11 +34,8 @@
         <input type="number" min="0" max="100" v-model="imageAspectRatioX" class="input" />
         zu
         <input type="number" min="0" max="100" v-model="imageAspectRatioY" class="input" />
-        <button
-          class="btn btn-sm"
-          :class="{ 'btn-primary': imageAspectRatioLocked }"
-          @click.prevent="imageAspectRatioLocked = !imageAspectRatioLocked"
-        >
+        <button class="btn btn-sm" :class="{ 'btn-primary': imageAspectRatioLocked }"
+          @click.prevent="imageAspectRatioLocked = !imageAspectRatioLocked">
           <FontAwesomeIcon :icon="faLink" />
         </button>
       </div>

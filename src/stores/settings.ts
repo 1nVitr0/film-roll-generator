@@ -4,11 +4,11 @@ import { usePiniaRefStore } from "../composables/usePiniaRefStore";
 
 export const useSettingsStore = defineStore("settings", () => {
   const images = ref<File[]>([]);
-  const imageWidth = ref<number>(90);
+  const imageWidth = ref<number>(80);
   const imageHeight = ref<number>(60);
   const imageGap = ref<number>(5);
-  const imageAspectRatioX = ref<number>(3);
-  const imageAspectRatioY = ref<number>(2);
+  const imageAspectRatioX = ref<number>(4);
+  const imageAspectRatioY = ref<number>(3);
   const imageAspectRatioLocked = ref<boolean>(true);
 
   const holeWidth = ref<number>(8);
@@ -25,12 +25,19 @@ export const useSettingsStore = defineStore("settings", () => {
   const imageAspectRatio = computed(() => imageAspectRatioX.value / imageAspectRatioY.value);
   const imageCount = computed(() => images.value.length || 5);
 
-  const printWidth = computed(
+  const stripWidth = computed(
     () => imageWidth.value + (holeWidth.value + holeMarginInner.value + holeMarginOuter.value) * 2
   );
-  const printHeight = computed(() => (imageHeight.value + imageGap.value) * imageCount.value);
+  const totalHeight = computed(() => (imageHeight.value + imageGap.value) * imageCount.value);
 
-  const holeCount = computed(() => Math.ceil(printHeight.value / (holeHeight.value + holeGap.value)));
+  const imagesPerStrip = computed(() =>
+    Math.floor((pageHeight.value - pageMargin.value * 2) / (imageHeight.value + imageGap.value))
+  );
+  const holesPerStrip = computed(() =>
+    Math.ceil((pageHeight.value - pageMargin.value * 2) / (holeHeight.value + holeGap.value))
+  );
+  const stripsPerPage = computed(() => Math.floor((pageWidth.value - pageMargin.value * 2) / stripWidth.value));
+  const totalStrips = computed(() => Math.ceil(imageCount.value / imagesPerStrip.value));
 
   const getAspectRatioNormalized = (width: number, height: number): [number, number] => {
     if (width === 0 || height === 0) return [1, 1];
@@ -79,9 +86,12 @@ export const useSettingsStore = defineStore("settings", () => {
     pageHeight,
     pageMargin,
     imageCount,
-    holeCount,
-    printWidth,
-    printHeight,
+    imagesPerStrip,
+    holesPerStrip,
+    stripsPerPage,
+    totalStrips,
+    stripWidth,
+    totalHeight,
   };
 });
 

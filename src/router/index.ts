@@ -1,5 +1,5 @@
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "../layout/DefaultLayout.vue";
 
@@ -28,6 +28,12 @@ const router = createRouter({
           },
         },
       ],
+    },
+    {
+      name: "print",
+      path: "/print",
+      meta: { hide: true },
+      component: () => import("../views/PrintView.vue"),
     },
   ],
 });
