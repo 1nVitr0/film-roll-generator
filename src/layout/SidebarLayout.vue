@@ -7,7 +7,6 @@ import { computed, useTemplateRef } from "vue";
 import { useRouter } from "vue-router";
 import RouterNavItem from "../components/RouterNavItem.vue";
 import { useNavigationMenu } from "../composables/useNavigationMenu";
-import { useAuth } from "../stores/auth";
 
 const { showMenu } = useNavigationMenu();
 const { afterEach, options } = useRouter();
