@@ -4,8 +4,9 @@
       <legend class="fieldset-legend">Bildauswahl</legend>
 
       <label class="label">Bilder</label>
-      <input type="file" class="file-input" multiple accept="image/*" @change="images = Array.from($event.target.files || [])" />
+      <input type="file" class="file-input" multiple accept="image/*" @change="images = [...$event.target.files]" />
     </fieldset>
+
     <fieldset class="p-4 shadow card fieldset bg-base-200">
       <legend class="fieldset-legend">Bildgröße</legend>
 
@@ -52,6 +53,7 @@
         </div>
       </div>
     </fieldset>
+
     <fieldset class="p-4 shadow card fieldset bg-base-200">
       <legend class="fieldset-legend">Filmstreifen</legend>
 
@@ -109,6 +111,37 @@
         </div>
       </div>
     </fieldset>
+
+    <fieldset class="p-4 shadow card fieldset bg-base-200">
+      <legend class="fieldset-legend">Seitenformat</legend>
+
+      <label class="label">Breite</label>
+      <div class="flex items-center gap-2">
+        <input type="range" min="0" max="300" v-model="pageWidth" class="range" />
+        <div class="w-32 gap-0 input input-sm input-bordered">
+          <input type="number" min="0" max="300" v-model="pageWidth" class="grow" />
+          <span class="opacity-50">mm</span>
+        </div>
+      </div>
+
+      <label class="label">Höhe</label>
+      <div class="flex items-center gap-2">
+        <input type="range" min="0" max="500" v-model="pageHeight" class="range" />
+        <div class="w-32 gap-0 input input-sm input-bordered">
+          <input type="number" min="0" max="500" v-model="pageHeight" class="grow" />
+          <span class="opacity-50">mm</span>
+        </div>
+      </div>
+
+      <label class="label">Abstand</label>
+      <div class="flex items-center gap-2">
+        <input type="range" min="0" max="500" v-model="pageMargin" class="range" />
+        <div class="w-32 gap-0 input input-sm input-bordered">
+          <input type="number" min="0" max="100" v-model="pageMargin" class="grow" />
+          <span class="opacity-50">mm</span>
+        </div>
+      </div>
+    </fieldset>
   </form>
 </template>
 
@@ -131,5 +164,8 @@ const {
   holeGap,
   holeMarginInner,
   holeMarginOuter,
+  pageWidth,
+  pageHeight,
+  pageMargin,
 } = useSettings();
 </script>

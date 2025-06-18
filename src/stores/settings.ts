@@ -18,6 +18,11 @@ export const useSettingsStore = defineStore("settings", () => {
   const holeMarginInner = ref<number>(5);
   const holeMarginOuter = ref<number>(5);
 
+  const pageWidth = ref<number>(297);
+  const pageHeight = ref<number>(420);
+  const pageMargin = ref<number>(10);
+
+  const imageAspectRatio = computed(() => imageAspectRatioX.value / imageAspectRatioY.value);
   const imageCount = computed(() => images.value.length || 5);
 
   const printWidth = computed(
@@ -60,6 +65,7 @@ export const useSettingsStore = defineStore("settings", () => {
     imageWidth,
     imageHeight,
     imageGap,
+    imageAspectRatio,
     imageAspectRatioX,
     imageAspectRatioY,
     imageAspectRatioLocked,
@@ -69,6 +75,9 @@ export const useSettingsStore = defineStore("settings", () => {
     holeRadius,
     holeMarginInner,
     holeMarginOuter,
+    pageWidth,
+    pageHeight,
+    pageMargin,
     imageCount,
     holeCount,
     printWidth,

@@ -1,7 +1,7 @@
 <template>
   <svg
-    :width="printWidth"
-    :height="printHeight"
+    :width="`${printWidth}mm`"
+    :height="`${printHeight}mm`"
     :viewBox="`0 0 ${printWidth} ${printHeight}`"
     xmlns="http://www.w3.org/2000/svg"
     fill-rule="evenodd"
@@ -47,34 +47,51 @@
     </defs>
 
     <!-- Film strip background -->
-    <rect :width="printWidth" :height="printHeight" fill="red" :mask="`url(#${maskId})`" />
+    <rect :width="printWidth" :height="printHeight" fill="black" :mask="`url(#${maskId})`" />
 
     <!-- Images -->
-    <g v-for="(image, idx) in images" :key="idx">
-      <image
-        :href="URL.createObjectURL(image)"
+    <g v-for="(image, idx) in imageInfos">
+      <rect
+        :key="idx"
         :x="holeMarginOuter + holeWidth + holeMarginInner"
         :y="imageGap / 2 + idx * (imageHeight + imageGap)"
         :width="imageWidth"
         :height="imageHeight"
-        :preserveAspectRatio="imageAspectRatioLocked ? `xMidYMid meet` : `none`"
+        fill="black"
+      />
+      <image
+        :key="idx"
+        :href="image.url"
+        :x="holeMarginOuter + holeWidth + holeMarginInner"
+        :y="imageGap / 2 + idx * (imageHeight + imageGap)"
+        :width="shouldRotate(image) ? imageHeight : imageWidth"
+        :height="shouldRotate(image) ? imageWidth : imageHeight"
+        :transform="
+          shouldRotate(image)
+            ? `rotate(90, ${holeMarginOuter + holeWidth + holeMarginInner + imageWidth / 2}, ${imageGap / 2 + idx * (imageHeight + imageGap) + imageWidth / 2})`
+            : undefined
+        "
       />
     </g>
   </svg>
 </template>
 
 <script lang="ts" setup>
-import { useId } from "vue";
+import { useId, computed, toRef } from "vue";
 import { useSettings } from "../stores/settings";
+import { useImageFiles } from "../composables/useImageFiles";
+
+const props = defineProps<{
+  images: File[];
+}>();
 
 const {
-  images,
   imageWidth,
   imageHeight,
   imageGap,
+  imageAspectRatio,
   imageAspectRatioX,
   imageAspectRatioY,
-  imageAspectRatioLocked,
   holeWidth,
   holeHeight,
   holeRadius,
@@ -88,4 +105,9 @@ const {
 } = useSettings();
 
 const maskId = useId();
+const { imageInfos } = useImageFiles(toRef(props, "images"));
+
+const shouldRotate = (image) => {
+  return imageAspectRatioX.value > imageAspectRatioY.value && image.width < image.height;
+};
 </script>
