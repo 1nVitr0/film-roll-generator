@@ -1,17 +1,17 @@
 <template>
   <form class="flex flex-col gap-2">
     <fieldset class="p-4 shadow card fieldset bg-base-200">
-      <legend class="fieldset-legend">Bildauswahl</legend>
+      <legend class="fieldset-legend">{{ $t('film-strip.image-selection') }}</legend>
 
-      <label class="label">Bilder</label>
+      <label class="label">{{ $t('film-strip.image', 2) }}</label>
       <input type="file" class="file-input" multiple accept="image/*"
         @change="images = [...($event.target as HTMLInputElement).files!]" />
     </fieldset>
 
     <fieldset class="p-4 shadow card fieldset bg-base-200">
-      <legend class="fieldset-legend">Bildgröße</legend>
+      <legend class="fieldset-legend">{{ $t('film-strip.image-size') }}</legend>
 
-      <label class="label">Breite</label>
+      <label class="label">{{ $t('film-strip.width') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="imageWidth" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <label class="label">Höhe</label>
+      <label class="label">{{ $t('film-strip.height') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="imageHeight" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <label class="label">Seitenverhältnis</label>
+      <label class="label">{{ $t('film-strip.aspect-ratio') }}</label>
       <div class="flex items-center gap-2">
         <input type="number" min="0" max="100" v-model="imageAspectRatioX" class="input" />
         zu
@@ -42,7 +42,7 @@
 
       <div class="divider"></div>
 
-      <label class="label">Abstand</label>
+      <label class="label">{{ $t('film-strip.gap') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="imageGap" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -53,9 +53,9 @@
     </fieldset>
 
     <fieldset class="p-4 shadow card fieldset bg-base-200">
-      <legend class="fieldset-legend">Filmstreifen</legend>
+      <legend class="fieldset-legend">{{ $t('film-strip.filmstrip', 2) }}</legend>
 
-      <label class="label">Löcher Breite</label>
+      <label class="label">{{ $t('film-strip.hole-width') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="holeWidth" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <label class="label">Löcher Höhe</label>
+      <label class="label">{{ $t('film-strip.hole-height') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="holeHeight" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <label class="label">Löcher Radius</label>
+      <label class="label">{{ $t('film-strip.hole-radius') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="holeRadius" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -82,7 +82,7 @@
         </div>
       </div>
 
-      <label class="label">Löcher Abstand</label>
+      <label class="label">{{ $t('film-strip.hole-gap') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="holeGap" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <label class="label">Löcher Innenabstand</label>
+      <label class="label">{{ $t('film-strip.hole-margin-inner') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="holeMarginInner" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <label class="label">Löcher Außenabstand</label>
+      <label class="label">{{ $t('film-strip.hole-margin-outer') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="100" v-model="holeMarginOuter" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -111,9 +111,9 @@
     </fieldset>
 
     <fieldset class="p-4 shadow card fieldset bg-base-200">
-      <legend class="fieldset-legend">Seitenformat</legend>
+      <legend class="fieldset-legend">{{ $t('film-strip.page-format') }}</legend>
 
-      <label class="label">Breite</label>
+      <label class="label">{{ $t('film-strip.width') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="300" v-model="pageWidth" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <label class="label">Höhe</label>
+      <label class="label">{{ $t('film-strip.height') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="500" v-model="pageHeight" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">
@@ -131,7 +131,7 @@
         </div>
       </div>
 
-      <label class="label">Abstand</label>
+      <label class="label">{{ $t('film-strip.gap') }}</label>
       <div class="flex items-center gap-2">
         <input type="range" min="0" max="500" v-model="pageMargin" class="range" />
         <div class="w-32 gap-0 input input-sm input-bordered">

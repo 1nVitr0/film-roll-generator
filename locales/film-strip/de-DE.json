@@ -1,0 +1,20 @@
+{
+  "film-strip": {
+    "aspect-ratio": "Seitenverhältnis",
+    "filmstrip": "Filmstreifen",
+    "gap": "Abstand",
+    "height": "Höhe",
+    "hole-gap": "Löcher Abstand",
+    "hole-height": "Löcher Höhe",
+    "hole-margin-inner": "Löcher Innenabstand",
+    "hole-margin-outer": "Löcher Außenabstand",
+    "hole-radius": "Löcher Radius",
+    "hole-width": "Löcher Breite",
+    "image": "Bild|Bilder",
+    "image-selection": "Bildauswahl",
+    "image-size": "Bildgröße",
+    "output": "Ausgabe",
+    "page-format": "Seitenformat",
+    "width": "Breite"
+  }
+}

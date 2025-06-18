@@ -1,0 +1,20 @@
+{
+  "film-strip": {
+    "aspect-ratio": "Aspect Ratio",
+    "filmstrip": "Filmstrip",
+    "gap": "Gap",
+    "height": "Height",
+    "hole-gap": "Hole Gap",
+    "hole-height": "Hole Height",
+    "hole-margin-inner": "Hole Margin Inner",
+    "hole-margin-outer": "Hole Margin Outer",
+    "hole-radius": "Hole Radius",
+    "hole-width": "Hole Width",
+    "image": "Image|Images",
+    "image-selection": "Image Selection",
+    "image-size": "Image Size",
+    "output": "Output",
+    "page-format": "Page Format",
+    "width": "Width"
+  }
+}

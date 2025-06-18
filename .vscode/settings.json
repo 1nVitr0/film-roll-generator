@@ -21,5 +21,11 @@
   "peacock.color": "#998803",
   "i18n-ally.localesPaths": [
     "locales"
-  ]
+  ],
+  "i18n-ally.sourceLanguage": "en-US",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.keepFulfilled": true,
+  "i18n-ally.pathMatcher": "{namespaces}/{locale}.json",
+  "i18n-ally.extract.targetPickingStrategy": "most-similar-by-key",
+  "i18n-ally.languageTagSystem": "legacy"
 }
