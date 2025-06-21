@@ -2,6 +2,24 @@ import { defineStore } from "pinia";
 import { computed, onUnmounted, ref, watch, type ComputedRef, type Ref } from "vue";
 import { usePiniaRefStore } from "../composables/usePiniaRefStore";
 
+export interface SettingsTemplate {
+  imageWidth: number;
+  imageHeight: number;
+  imageGap: number;
+  imageAspectRatioX: number;
+  imageAspectRatioY: number;
+  imageAspectRatioLocked: boolean;
+  holeWidth: number;
+  holeHeight: number;
+  holeGap: number;
+  holeRadius: number;
+  holeMarginInner: number;
+  holeMarginOuter: number;
+  pageWidth: number;
+  pageHeight: number;
+  pageMargin: number;
+}
+
 export const useSettingsStore = defineStore("settings", () => {
   const images = ref<File[]>([]);
   const imageWidth = ref<number>(80);
@@ -44,6 +62,24 @@ export const useSettingsStore = defineStore("settings", () => {
     const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
     const divisor = gcd(width, height);
     return [width / divisor, height / divisor];
+  };
+
+  const applyTemplate = (template: SettingsTemplate) => {
+    imageWidth.value = template.imageWidth;
+    imageHeight.value = template.imageHeight;
+    imageGap.value = template.imageGap;
+    imageAspectRatioX.value = template.imageAspectRatioX;
+    imageAspectRatioY.value = template.imageAspectRatioY;
+    imageAspectRatioLocked.value = template.imageAspectRatioLocked;
+    holeWidth.value = template.holeWidth;
+    holeHeight.value = template.holeHeight;
+    holeGap.value = template.holeGap;
+    holeRadius.value = template.holeRadius;
+    holeMarginInner.value = template.holeMarginInner;
+    holeMarginOuter.value = template.holeMarginOuter;
+    pageWidth.value = template.pageWidth;
+    pageHeight.value = template.pageHeight;
+    pageMargin.value = template.pageMargin;
   };
 
   watch(
@@ -92,6 +128,7 @@ export const useSettingsStore = defineStore("settings", () => {
     totalStrips,
     stripWidth,
     totalHeight,
+    applyTemplate,
   };
 });
 
